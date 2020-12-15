@@ -1,7 +1,9 @@
 import { Controller, Req, Res, Get } from '@nestjs/common';
 import { TransfertService } from 'src/services/transfert.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('appList')
+@ApiTags('List')
 export class AppListController {
 
     constructor(

@@ -3,7 +3,7 @@ import { TransfertService } from 'src/services/transfert.service';
 import { ApiTags } from '@nestjs/swagger';
 
 @Controller('apiList')
-@ApiTags('list')
+@ApiTags('List')
 export class ApiListController {
 
     constructor(

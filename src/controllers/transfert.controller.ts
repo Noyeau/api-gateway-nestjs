@@ -1,8 +1,10 @@
 import { Controller, Get, Req, Param, Res, Post, Body, Put, Delete } from '@nestjs/common';
 import { ConfigService } from 'src/services/config.service';
 import { TransfertService } from 'src/services/transfert.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('gateway')
+@ApiTags('Gateway')
 export class TransfertController {
 
     constructor(
