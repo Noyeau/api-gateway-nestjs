@@ -6,9 +6,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
 
   const options = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
-    .setVersion('1.0')
+    .setTitle('API GATEWAY')
+    .setDescription('')
+    .setVersion('2.0')
     .addApiKey({
       type: 'apiKey', // this should be apiKey
       name: 'Authorization', // this is the name of the key you expect in header
