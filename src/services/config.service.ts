@@ -1,4 +1,5 @@
 import { Injectable, HttpService } from '@nestjs/common';
+import { environment } from 'src/environment/environment';
 
 @Injectable()
 export class ConfigService {
@@ -13,7 +14,7 @@ export class ConfigService {
 
 
     private init(){
-        this.httpService.get("http://192.168.1.15:1899/api").subscribe((res:any)=>{
+        this.httpService.get( environment.apiSystem+"/api").subscribe((res:any)=>{
             this.apiList = res.data
         })
     }

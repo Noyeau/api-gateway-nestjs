@@ -1,6 +1,7 @@
 import { Controller, Req, Res, Get } from '@nestjs/common';
 import { TransfertService } from 'src/services/transfert.service';
 import { ApiTags } from '@nestjs/swagger';
+import { environment } from 'src/environment/environment';
 
 @Controller('appList')
 @ApiTags('List')
@@ -12,7 +13,7 @@ export class AppListController {
 
         @Get()
         public getAll(@Req() req): any {
-            return this.transfertService.sendRequest(req,  "http://192.168.1.15:1899/app")
+            return this.transfertService.sendRequest(req, environment.apiSystem +"/app")
         }
 
         
