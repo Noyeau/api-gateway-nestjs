@@ -8,61 +8,65 @@ import { ApiTags } from '@nestjs/swagger';
 export class TransfertController {
 
     constructor(
-        private configService:ConfigService,
+        private configService: ConfigService,
         private transfertService: TransfertService
-        ){}
+    ) { }
 
-    genereApiUrl(apiCode,urlOrigine) {
-        
+    genereApiUrl(apiCode, urlOrigine) {
+
         let api = this.configService.apiList.find((ap) => ap.code == apiCode && ap.open == true)
-         console.log(api)
-     
+        console.log(api)
+
         let url = null
         if (api) {
             let apiUrl = api.serveur + ':' + api.port
             url = apiUrl + urlOrigine.replace('/gateway/' + apiCode, '')
         }
+        console.log(url)
         return url
     }
 
     @Get(':apiCode/**')
-    public get(@Req() req, @Param('apiCode') apiCode: string): any {
+    public get(@Req() req, @Res() res, @Param('apiCode') apiCode: string): any {
         console.log(apiCode, req.url)
         let url = this.genereApiUrl(apiCode, req.url)
         if (url) {
-            return this.transfertService.sendRequest(req, url);
+            return this.transfertService.sendRequest(req, res, url);
         }
-        return { err: 'api inexisante' }
+        return res.status(404).send({ err: 'api inexisante' })
     }
 
     @Post(':apiCode/**')
-    public post(@Req() req, @Param('apiCode') apiCode: string, @Body() body:any): any {
+    public post(@Req() req, @Res() res, @Param('apiCode') apiCode: string, @Body() body: any): any {
         console.log(apiCode, req.url)
         let url = this.genereApiUrl(apiCode, req.url)
         if (url) {
-            return this.transfertService.sendRequest(req, url, body);
+            return this.transfertService.sendRequest(req, res, url, body);
         }
-        return { err: 'api inexisante' }
+        return res.status(404).send({ err: 'api inexisante' })
+
     }
 
     @Put(':apiCode/**')
-    public put(@Req() req, @Param('apiCode') apiCode: string, @Body() body:any): any {
+    public put(@Req() req, @Res() res, @Param('apiCode') apiCode: string, @Body() body: any): any {
         console.log(apiCode, req.url)
         let url = this.genereApiUrl(apiCode, req.url)
         if (url) {
-            return this.transfertService.sendRequest(req, url, body);
+            return this.transfertService.sendRequest(req, res, url, body);
         }
-        return { err: 'api inexisante' }
+        return res.status(404).send({ err: 'api inexisante' })
+
     }
 
     @Delete(':apiCode/**')
-    public del(@Req() req, @Param('apiCode') apiCode: string): any {
+    public del(@Req() req, @Res() res, @Param('apiCode') apiCode: string): any {
         console.log(apiCode, req.url)
         let url = this.genereApiUrl(apiCode, req.url)
         if (url) {
-            return this.transfertService.sendRequest(req, url);
+            return this.transfertService.sendRequest(req, res, url);
         }
-        return { err: 'api inexisante' }
+        return res.status(404).send({ err: 'api inexisante' })
+
     }
 
 

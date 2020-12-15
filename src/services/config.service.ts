@@ -14,7 +14,11 @@ export class ConfigService {
 
 
     private init(){
-        this.httpService.get( environment.apiSystem+"/api").subscribe((res:any)=>{
+        const headersRequest = {
+            'Content-Type': 'application/json', // afaik this one is not needed
+            'Authorization': environment.apiKeyCode,
+        };
+        this.httpService.get( environment.apiSystem+"/api",{ headers: headersRequest }).subscribe((res:any)=>{
             this.apiList = res.data
         })
     }

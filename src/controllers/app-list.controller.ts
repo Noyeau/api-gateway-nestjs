@@ -9,12 +9,12 @@ export class AppListController {
 
     constructor(
         private transfertService: TransfertService
-        ){}
+    ) { }
 
-        @Get()
-        public getAll(@Req() req): any {
-            return this.transfertService.sendRequest(req, environment.apiSystem +"/app")
-        }
+    @Get()
+    public getAll(@Req() req, @Res() res): any {
+        return this.transfertService.sendRequest(req, res, environment.apiSystem + "/app")
+    }
 
-        
+
 }

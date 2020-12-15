@@ -12,8 +12,8 @@ export class ApiListController {
     ) { }
 
     @Get()
-    public getAll(@Req() req): any {
-        return this.transfertService.sendRequest(req, environment.apiSystem+"/api")
+    public getAll(@Req() req, @Res() res): any {
+        return this.transfertService.sendRequest(req, res, environment.apiSystem + "/api")
     }
 
 }
