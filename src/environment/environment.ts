@@ -1,8 +1,7 @@
 
 
 export const environment: any = {
-    production: true,
-    apiCode:"gateway",
-    apiSystem:"http://192.168.1.15:1899",
-    apiKeyCode:"appNoyeau"
+    apiCode: "gateway",
+    apiSystem: process.env.apiSystem || "http://localhost:1899",
+    apiKeyCode: process.env.apiKeyCode || "apiSecretKeyCode"
 };
